@@ -2,7 +2,7 @@ import RPi.GPIO as GPIO
 from time import sleep
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setwarnings(False)
+GPIO.setwarnings(True)
 
 class Motor():
     def __init__(self, Ena, In1, In2):
@@ -34,13 +34,21 @@ class Motor():
 
 motor1 = Motor(23,24,25)
 
-while True:
-    motor1.moveForward(100, 10)
-    print("Moving forward")
-    motor1.stop(2)
-    print("Stopped")
-    motor1.moveBackward(50, 10)
-    print("Moving backward")
+try:
+    while True:
+        motor1.moveForward(100, 10)
+        print("Moving forward")
+        motor1.stop(2)
+        print("Stopped")
+        motor1.moveBackward(50, 10)
+        print("Moving backward")
+
+except Exception:
+    print("Found error")
+
+finally:
+    print("Cleaning all ports")
+    GPIO.cleanup()
 
 
     
