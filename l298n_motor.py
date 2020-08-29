@@ -4,7 +4,8 @@ from time import sleep
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(True)
 
-class Motor():
+
+class Motor:
     def __init__(self, Ena, In1, In2):
         self.Ena = Ena
         self.In1 = In1
@@ -30,9 +31,9 @@ class Motor():
     def stop(self, t=0):
         self.pwm.ChangeDutyCycle(0)
         sleep(t)
-     
 
-motor1 = Motor(23,24,25)
+
+motor1 = Motor(23, 24, 25)
 
 try:
     while True:
@@ -49,9 +50,3 @@ except Exception:
 finally:
     print("Cleaning all ports")
     GPIO.cleanup()
-
-
-    
-    
-    
-
